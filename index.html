@@ -440,6 +440,15 @@ ResultSet rs = stmt.executeQuery();
     </script>
     <script>
         (function () {
+                function showPopup() {
+                    document.getElementById("myModal").style.display = "block";
+                }
+        
+                // 关闭弹窗
+                function closePopup() {
+                    document.getElementById("myModal").style.display = "none";
+                }
+
             // 跳转到新页面
             function redirectToNewPage() {
                 // 获取当前 URL 参数
