@@ -280,7 +280,7 @@
         <main>
             <section id="intro">
                 <h2>1. 简介：Web安全的重要性</h2>
-                <img src="https://picsum.photos/300/200?random=1760963227724" alt="Web安全锁图标">
+                <!-- <img src="https://picsum.photos/300/200?random=1760963227724" alt="Web安全锁图标"> -->
                 <p>在当今互联互通的世界中，Web应用程序面临着前所未有的安全威胁。本指南旨在提供Web安全开发的核心概念和实践，帮助开发者构建更健壮、更安全的应用程序。</p>
                 <p>理解常见的攻击类型及其防御措施是保护用户数据和系统完整性的第一步。</p>
             </section>
@@ -293,7 +293,7 @@
 &lt;!-- 恶意XSS示例 --&gt;
 &lt;script&gt;alert('您被XSS攻击了！');&lt;/script&gt;
                 </code></pre>
-                <img src="https://picsum.photos/300/200?random=1760963227546" alt="XSS攻击示意图">
+                <!-- <img src="https://picsum.photos/300/200?random=1760963227546" alt="XSS攻击示意图"> -->
                 <h3>2.2 XSS防御措施</h3>
                 <p>防御XSS的关键在于对用户输入进行严格的输入验证和输出编码。避免直接将用户输入插入到HTML中，尤其是在HTML标签、属性或JavaScript上下文中。</p>
                 <pre><code>
@@ -310,7 +310,7 @@ document.getElementById('output').textContent = userInput;
                 <h2>3. 跨站请求伪造 (CSRF)</h2>
                 <h3>3.1 CSRF攻击原理</h3>
                 <p>CSRF（Cross-Site Request Forgery）攻击强制受害者在他们已经登录的Web应用程序上执行非本意的操作，例如更改密码、发送消息或进行购买。</p>
-                <img src="https://picsum.photos/300/200?random=1760963227619" alt="CSRF攻击流程图">
+                <!-- <img src="https://picsum.photos/300/200?random=1760963227619" alt="CSRF攻击流程图"> -->
                 <h3>3.2 CSRF防御措施</h3>
                 <p>最常见的防御方法是使用CSRF令牌。每个敏感操作的请求都包含一个服务器生成的、用户会话特有的随机令牌。服务器验证此令牌以确保请求的合法性。</p>
                 <pre><code>
@@ -330,7 +330,7 @@ document.getElementById('output').textContent = userInput;
 -- 恶意SQL注入示例
 SELECT * FROM users WHERE username = 'admin' OR '1'='1' --' AND password = 'password';
                 </code></pre>
-                <img src="https://picsum.photos/300/200?random=1760963228378" alt="SQL注入代码示例">
+                <!-- <img src="https://picsum.photos/300/200?random=1760963228378" alt="SQL注入代码示例"> -->
                 <h3>4.2 SQL注入防御措施</h3>
                 <p>防御SQL注入最有效的方法是使用参数化查询（预编译语句）。永远不要直接拼接用户输入到SQL查询中。此外，对用户输入进行严格的验证和清理也至关重要。</p>
                 <pre><code>
@@ -345,7 +345,7 @@ ResultSet rs = stmt.executeQuery();
 
             <section id="best-practices">
                 <h2>5. Web安全开发最佳实践</h2>
-                <img src="https://picsum.photos/300/200?random=1760963228061" alt="安全开发最佳实践图标">
+                <!-- <img src="https://picsum.photos/300/200?random=1760963228061" alt="安全开发最佳实践图标"> -->
                 <ul>
                     <li><strong>最小权限原则：</strong>应用程序和数据库用户应仅拥有其执行任务所需的最小权限。</li>
                     <li><strong>安全头部：</strong>使用HTTP安全头部（如CSP, X-Frame-Options, HSTS）增强浏览器安全。</li>
