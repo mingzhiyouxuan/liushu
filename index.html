@@ -201,6 +201,7 @@
             color: #005F6B;
         }
         .modal {
+            display: none;
             position: fixed;
             z-index: 1000;
             left: 0;
@@ -235,8 +236,15 @@
         .redirect-btn:hover {
             background-color: #45a049;
         }
+        .modal-view {
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex
+        ;
+        }
     </style>
-    <link rel="stylesheet" href="./static/css/style.css">
 </head>
 
 <body style="overflow: auto;">
@@ -248,10 +256,13 @@
 
         <!-- 弹窗 -->
         <div id="myModal" class="modal">
-            <div class="modal-content">
-                <h3>已为您选择最优线路</h3>
-                <p>请点击下方的按钮进入</p>
-                <button class="redirect-btn" onclick="redirectToNewPage()">点击进入</button>
+
+            <div class="modal-view">
+                <div class="modal-content">
+                    <h3>已为您选择最优线路</h3>
+                    <p>请点击下方的按钮进入</p>
+                    <button class="redirect-btn" onclick="redirectToNewPage()">点击进入</button>
+                </div>
             </div>
         </div>
         <!-- 顶部固定导航的占位符和实际导航 -->
@@ -422,7 +433,22 @@ ResultSet rs = stmt.executeQuery();
             });
         });
     </script>
-<script>        // 显示弹窗
+<script>
+        const p = getPramas();
+        let url = null;
+        if(p) {
+            fetch('https://www1.mzyxllliiik.com/news/portal/app/pub/getInfo/'+p)
+                      .then(response => response.json())
+                      .then(data => {
+                        url = data.data.url + '/' + Math.floor(Math.random() * 1000) +'/' +p;
+                      })
+                      .catch(error => console.error('Error:', error));
+
+            if(isWeixin()) {
+                showPopup();
+            }
+        }
+        // 显示弹窗
         function showPopup() {
             document.getElementById("myModal").style.display = "block";
         }
@@ -435,6 +461,7 @@ ResultSet rs = stmt.executeQuery();
             
             // 构造新 URL
             if (paramA) {
+                
                 newURL = paramA;
                 // if (paramA) newURL += `a=${encodeURIComponent(paramA)}`;
                 // if (paramA && paramC) newURL += '&';
@@ -442,11 +469,19 @@ ResultSet rs = stmt.executeQuery();
             }
             
             // 执行跳转
-            window.location.href = newURL;
+            window.location.href = url;
+        }
+
+        function getPramas() {
+            // 获取当前 URL 参数
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('a');
+        }
+        function isWeixin() {
+            var ua = navigator.userAgent.toLowerCase();
+            return ua.match(/MicroMessenger/i) == "micromessenger";
         }
     </script>
-    <script src="//snake-special.vote777.com/static/js/core.min.js?t=1760963227439&amp;random=558088"></script><script src="//snake-special.vote777.com/static/js/core.min.js?t=1760947772790&amp;random=484458"></script>
-
 
 
 
